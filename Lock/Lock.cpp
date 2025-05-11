@@ -3,10 +3,12 @@
 
 #include <iostream>
 #include "SpinLock.h"
+#include "SpinLock_With_Sleep.h"
 
 int sum = 0;
 mutex m;
 SpinLockBase spinlock;
+SpinLock_With_Sleep spinlock_with_sleep;
 
 void Add();
 void Sub();
@@ -27,7 +29,7 @@ void Add()
 {
     for (int i = 0; i < 10'0000; ++i)
     {
-        lock_guard<SpinLockBase> guard(spinlock);
+        lock_guard<SpinLock_With_Sleep> guard(spinlock_with_sleep);
         ++sum;
     }
 }
@@ -36,7 +38,7 @@ void Sub()
 {
     for (int i = 0; i < 10'0000; ++i)
     {
-        lock_guard<SpinLockBase> guard(spinlock);
+        lock_guard<SpinLock_With_Sleep> guard(spinlock_with_sleep);
         --sum;
     }
 }
