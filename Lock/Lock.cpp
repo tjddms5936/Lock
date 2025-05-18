@@ -2,16 +2,21 @@
 //
 
 #include <iostream>
+#include <queue>
+#include <Windows.h>
 #include "SpinLock.h"
 #include "SpinLock_With_Sleep.h"
 
 int sum = 0;
 mutex m;
+queue<int> qData;
+HANDLE handle;
+
 SpinLockBase spinlock;
 SpinLock_With_Sleep spinlock_with_sleep;
-
 void Add();
 void Sub();
+
 
 int main()
 {

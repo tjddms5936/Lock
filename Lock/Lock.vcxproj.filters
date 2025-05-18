@@ -26,5 +26,11 @@
     <ClInclude Include="SpinLock_With_Sleep.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="EventMutex.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionVariable.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

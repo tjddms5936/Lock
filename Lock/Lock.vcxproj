@@ -130,6 +130,8 @@
     <ClCompile Include="Lock.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConditionVariable.h" />
+    <ClInclude Include="EventMutex.h" />
     <ClInclude Include="SpinLock.h" />
     <ClInclude Include="SpinLock_With_Sleep.h" />
   </ItemGroup>
