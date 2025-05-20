@@ -132,6 +132,8 @@
   <ItemGroup>
     <ClInclude Include="ConditionVariable.h" />
     <ClInclude Include="EventMutex.h" />
+    <ClInclude Include="LockBasedQueue.h" />
+    <ClInclude Include="LockBasedStack.h" />
     <ClInclude Include="SpinLock.h" />
     <ClInclude Include="SpinLock_With_Sleep.h" />
   </ItemGroup>

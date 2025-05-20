@@ -6,27 +6,34 @@
 #include <Windows.h>
 #include "SpinLock.h"
 #include "SpinLock_With_Sleep.h"
+#include "LockBasedQueue.h"
+#include "LockBasedStack.h"
 
 int sum = 0;
 mutex m;
 queue<int> qData;
 HANDLE handle;
 
+LockQueue<int> q;
+LockStack<int> s;
+
 SpinLockBase spinlock;
 SpinLock_With_Sleep spinlock_with_sleep;
 void Add();
 void Sub();
-
+void Push();
+void Pop();
 
 int main()
 {
-    thread t1(Add);
-    thread t2(Sub);
+    thread t1(Push);
+    thread t2(Pop);
+    thread t3(Pop);
 
     t1.join();
     t2.join();
+    t3.join();
 
-    cout << sum << endl;
 }
 
 
@@ -45,5 +52,29 @@ void Sub()
     {
         lock_guard<SpinLock_With_Sleep> guard(spinlock_with_sleep);
         --sum;
+    }
+}
+
+void Push()
+{
+    while (true)
+    {
+        int val = rand() % 100;
+        q.Push(val);
+        this_thread::sleep_for(10ms);
+    }
+
+}
+
+void Pop()
+{
+    while (true)
+    {
+        /*int data = 0;
+        if (q.TryPop(data))
+            cout << data << endl;*/
+        int data = 0;
+        q.WaitPop(data);
+        cout << data << endl;
     }
 }
